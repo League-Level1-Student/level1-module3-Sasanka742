@@ -1,1 +1,0 @@
-# LEVEL 1 MODULE 3 In-progress recipes go here!
