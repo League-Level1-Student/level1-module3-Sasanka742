@@ -18,6 +18,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
 import javazoom.jl.player.advanced.AdvancedPlayer;
@@ -26,34 +27,41 @@ import javazoom.jl.player.advanced.AdvancedPlayer;
  *   Right click your project and add it as a JAR (Under Java Build Path > Libraries).*/
 
 public class Jukebox implements Runnable, ActionListener {
-	Song song;
+	static Song song;
+	 
 	static JFrame frame = new JFrame();
-	static JLabel label = loadImage("src/_03_jukebox/futuristic-user-interface-control-concept-4k-hud-stock-footage_bhg_r4l-je_thumbnail-full01.png");
+	static JPanel panel = new JPanel();
 	
-	static JButton button1 = new JButton("Option One");
-	static JButton button2 = new JButton("Option Two");    	
 	
+	JButton button1;
+	JButton button2;
 	public static void main(String[] args) {
-    	
-    	frame.setVisible(true);
-    	frame.add(label);
-    	
-    	label.add(button1);
-    	label.add(button2);
     	
     	
 	}
     public void run() {
 
-    	button1.addActionListener(this);
-    	button2.addActionListener(this);
-    	frame.pack();
 		// 1. Find an mp3 on your computer or on the Internet.
 		// 2. Create a Song object for that mp3 	
 
 		// 3. Play the Song
-		
+    	frame.setBounds(0, 0, 300, 150);
     	
+    	song = new Song("src/Alan Walker - Force [NCS Release]-256.mp3");
+		song.play();
+    	
+    	button1 = new JButton("Album One");
+    	button1.setBounds(0, 0, 150, 150);
+    	panel.add(button1);
+        button2 = new JButton("Album Two");    
+        button2.setBounds(0, 0, 150,150);
+    	panel.add(button2);
+    
+    	frame.add(panel);
+        frame.setVisible(true);
+    	
+    	button1.addActionListener(this);
+    	button2.addActionListener(this);
     	/*
 		 * 4. Create a user interface for your Jukebox so that the user can to
 		 * choose which song to play. You can use a different button for
@@ -79,9 +87,13 @@ public class Jukebox implements Runnable, ActionListener {
 		JButton buttonPressed = (JButton) arg0.getSource();
 		
 		if(arg0.getSource()==button1){
-			song = new Song("/Level1-Module3/src/_03_jukebox/Alan Walker - Force my-free-mp3s.com .mp3");
+			song.stop();
+			song = new Song("src/Alan Walker - Force [NCS Release]-256.mp3");
+			song.play();
 		}else if(arg0.getSource()==button2){
-			song = new Song("/Level1-Module3/src/_03_jukebox/Alan Walker - Force.mp3");
+			song.stop();
+			song = new Song("src/DEAF KEV - Invincible [NCS Release]-256.mp3");
+			song.play();
 		}
 	}
 	
