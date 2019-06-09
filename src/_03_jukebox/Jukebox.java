@@ -50,10 +50,10 @@ public class Jukebox implements Runnable, ActionListener {
     	song = new Song("src/Alan Walker - Force [NCS Release]-256.mp3");
 		song.play();
     	
-    	button1 = new JButton("Album One");
+    	button1 = new JButton("Force");
     	button1.setBounds(0, 0, 150, 150);
     	panel.add(button1);
-        button2 = new JButton("Album Two");    
+        button2 = new JButton("Invincible");    
         button2.setBounds(0, 0, 150,150);
     	panel.add(button2);
     

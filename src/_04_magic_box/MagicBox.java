@@ -12,6 +12,7 @@ import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.net.MalformedURLException;
 
 import javax.imageio.ImageIO;
 import javax.swing.JFrame;
@@ -42,14 +43,17 @@ public class MagicBox extends JPanel implements Runnable, MouseListener {
 		try {
 			loadBackgroundImage();
 			createUI();
+			
 		} catch (Exception w) {
 			System.err.println(w.getMessage());
 		}
 	}
 
 	private void createUI() {
+		
 		JFrame frame = new JFrame("The Magic Box contains many secrets...");
 		frame.add(this);
+		frame.addMouseListener(this);
 		setPreferredSize(new Dimension(backgroundImage.getWidth(), backgroundImage.getHeight()));
 		frame.pack();
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -57,7 +61,7 @@ public class MagicBox extends JPanel implements Runnable, MouseListener {
 	}
 
 	private void loadBackgroundImage() throws Exception {
-		String imageFile = "src/magic_box/magic-box.jpg";
+		String imageFile = "src/magic-box-vector-3788728.jpg";
 		try {
 			backgroundImage = ImageIO.read(new File(imageFile));
 		} catch (IOException e) {
@@ -68,6 +72,7 @@ public class MagicBox extends JPanel implements Runnable, MouseListener {
 	@Override
 	public void paintComponent(Graphics g) {
 		g.drawImage(backgroundImage, 0, 0, null);
+		
 	}
 
 	@Override
@@ -77,9 +82,20 @@ public class MagicBox extends JPanel implements Runnable, MouseListener {
 	}
 
 	@Override
-	public void mousePressed(MouseEvent e) {
+	 public void mousePressed(MouseEvent e) {
 		// TODO Auto-generated method stub
-		
+		MediaPalace media = new MediaPalace();
+		System.out.println(backgroundImage.getRGB(e.getX(), e.getY()));
+		if(backgroundImage.getRGB(e.getX(), e.getY())==-14141602) {
+			media.playMusicOnComputer("src/Alan Walker - Force [NCS Release]-256.mp3");
+			
+		}else if(backgroundImage.getRGB(e.getX(), e.getY())==-1) {
+			media.playMusicOnComputer("src/DEAF KEV - Invincible [NCS Release]-256.mp3");
+			
+		}else if(backgroundImage.getRGB(e.getX(), e.getY())==-15396592) {
+			media.playMusicOnComputer("src/DEAF KEV - Invincible [NCS Release]-256.mp3");
+			
+		}
 	}
 
 	@Override
@@ -91,6 +107,7 @@ public class MagicBox extends JPanel implements Runnable, MouseListener {
 	@Override
 	public void mouseEntered(MouseEvent e) {
 		// TODO Auto-generated method stub
+		
 		
 	}
 
