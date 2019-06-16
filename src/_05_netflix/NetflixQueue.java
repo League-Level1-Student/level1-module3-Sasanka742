@@ -22,6 +22,10 @@ public class NetflixQueue {
 		movies.add(movie);
 	}
 	
+	public void removeMovie(int index) {
+		movies.remove(index);
+	}
+	
 	public Movie getMovie(int movieNumber){
 		if(movieNumber < movies.size()) 
 		return movies.get(movieNumber);
